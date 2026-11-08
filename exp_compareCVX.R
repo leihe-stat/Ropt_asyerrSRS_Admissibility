@@ -11,8 +11,8 @@
 ##         ../tex/tables/compCVX.tex.
 ## Run from this folder: Rscript table5.R  (RERUN <- FALSE: table only)
 ## =====================================================================
-source("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/R/slsecore.R"); 
-source("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/R/cvx_reduced.R")
+source("../R/slsecore.R"); 
+source("../R/cvx_reduced.R")
 RERUN <- TRUE
 t <- 0.5; ks <- c(2, 5, 10, 15, 20, 30, 40)
 cpu <- function(expr, nrep) {
@@ -44,11 +44,11 @@ if (RERUN) {
                                status_clarabel = res$CLARABEL$status, same_clarabel = res$CLARABEL$same))
     print(tail(sc, 1)[, c("region", "k", "time", "time_scs", "time_clarabel", "dlog_scs", "dlog_clarabel", "same_scs", "same_clarabel")])
   }
-  write.csv(sc, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/results/compCVX.csv", row.names = FALSE)
+  write.csv(sc, "../results/compCVX.csv", row.names = FALSE)
 }
 
 ## ------------------------------------------------ LaTeX table
-sc <- read.csv("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/results/compCVX.csv")
+sc <- read.csv("../results/compCVX.csv")
 np <- function(x) if (x > 1e9) { e <- floor(log10(x)); sprintf("$%.2f\\times10^{%d}$", x / 10^e, e) } else format(x, big.mark = ",")
 ft <- function(x) if (x < 10) sprintf("%.3f", x) else sprintf("%.1f", x)
 L <- c()
@@ -59,5 +59,5 @@ for (k in ks) {
                     np(b$npoints), ft(b$time), ft(b$time_scs), ft(b$time_clarabel)))
 }
 #dir.create("../tex/tables", showWarnings = FALSE)
-writeLines(L, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/tables/compCVX.tex")
+writeLines(L, "../tables/compCVX.tex")
 cat(L, sep = "\n")
