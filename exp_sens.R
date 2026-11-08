@@ -5,7 +5,7 @@
 ##         table ../tex/tables/maximin.tex, and ../figs/fig_olseff.pdf,
 ##         ../figs/fig_misspec.pdf. Run from this folder: Rscript exp_sens.R
 ## =====================================================================
-source("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/R/slsecore.R")
+source("../R/slsecore.R")
 tg <- seq(0, 0.95, by = 0.025)
 res <- NULL; Emats <- list()
 for (region in c("cube", "ball")) for (k in 2:6) {
@@ -18,8 +18,8 @@ for (region in c("cube", "ball")) for (k in 2:6) {
   res <- rbind(res, data.frame(region, k, ols_min = min(E[1, ]), t05_min = min(E[tg == 0.5, ]),
                                maximin_t0 = tg[i], maximin_eff = minE[i]))
 }
-print(res); write.csv(res, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/results/maximin.csv", row.names = FALSE)
-saveRDS(list(tg = tg, E = Emats), "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/results/sens.rds")
+print(res); write.csv(res, "../results/maximin.csv", row.names = FALSE)
+saveRDS(list(tg = tg, E = Emats), "../results/sens.rds")
 
 ## Table 5 (LaTeX)
 body <- c()
@@ -30,12 +30,12 @@ for (k in 2:6) {
                           f4(b$ols_min), f4(b$t05_min), b$maximin_t0, f4(b$maximin_eff)))
 }
 #dir.create("../tex/tables", showWarnings = FALSE)
-writeLines(body, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/tables/maximin.tex")
+writeLines(body, "../tables/maximin.tex")
 cat(body, sep = "\n")
 
 ## Figure 2: R-efficiency of the OLSE-optimal design under the SLSE
 tf <- seq(0, 0.99, by = 0.01)
-pdf("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/fig_olseff.pdf", width = 9, height = 4.2)
+pdf("../fig_olseff.pdf", width = 9, height = 4.2)
 par(mfrow = c(1, 2), mar = c(4.2, 4.2, 2, 1))
 for (region in c("cube", "ball")) {
   f <- crit_fun(region); cols <- c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd")
@@ -52,7 +52,7 @@ for (region in c("cube", "ball")) {
 dev.off()
 
 ## Figure 3: efficiency of xi*(t0) when the true value is t (k = 2 and 4, cube)
-pdf("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/fig_misspec.pdf", width = 9, height = 4.2)
+pdf("../fig_misspec.pdf", width = 9, height = 4.2)
 par(mfrow = c(1, 2), mar = c(4.2, 4.2, 2, 1))
 for (k in c(2, 4)) {
   E <- Emats[[paste("cube", k)]]
