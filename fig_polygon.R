@@ -62,7 +62,7 @@ panel <- function(xlim, ylim, main, full) {
   text(P[, 1], P[, 2], labels = lab, pos = c(1, 1, 4, 2), offset = 0.6, xpd = TRUE)
 }
 
-pdf("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/fig_polygon.pdf", width = 7.4, height = 4.2)
+pdf("../fig_polygon.pdf", width = 7.4, height = 4.2)
 par(mfrow = c(1, 2), mar = c(4.2, 4.2, 2, 1), oma = c(2.2, 0, 0, 0))
 
 ## (a) full view
