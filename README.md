@@ -4,7 +4,6 @@ R code for the paper
 
 > Lei He, Wei Shi and Min-Jue Zhang. *Efficient computation of R-optimal designs for
 > second-order response surface models with asymmetric errors via design admissibility.*
-> Submitted to *Computational Statistics & Data Analysis*.
 
 The code computes R-optimal approximate designs under the second-order least squares
 estimator (SLSE) for second-order response surface (SRS) models in `k` factors on the
