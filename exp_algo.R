@@ -5,7 +5,7 @@
 ##         ../tex/tables/designs_cube.tex and ../tex/tables/designs_ball.tex.
 ## Run from this folder: Rscript exp_scal.R
 ## =====================================================================
-source("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/R/slsecore.R")
+source("../R/slsecore.R")
 tab <- NULL
 for (region in c("cube", "ball")) for (k in 2:11) for (t in c(0, .5, .9)) {
   d <- rdesign_srs(k, t, region)
@@ -13,7 +13,7 @@ for (region in c("cube", "ball")) for (k in 2:11) for (t in c(0, .5, .9)) {
                                w1 = d$weights[1], w2 = d$weights[2], w3 = d$weights[3], npoints = d$npoints,
                                m1 = d$moments[1], m2 = d$moments[2]))
 }
-write.csv(tab, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/results/tables1_2.csv", row.names = FALSE)
+write.csv(tab, "../results/tables1_2.csv", row.names = FALSE)
 
 ## ------------------------------------------------ LaTeX tables
 ## two blocks side by side: k = 2..6 on the left, k = 7..11 on the right
@@ -36,8 +36,8 @@ design_rows <- function(region) {
   L
 }
 #dir.create("../tex/tables", showWarnings = FALSE)
-writeLines(design_rows("cube"), "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/tables/designs_cube.tex")
+writeLines(design_rows("cube"), "../tables/designs_cube.tex")
 cat(design_rows("cube"), sep = "\n")
 
-writeLines(design_rows("ball"), "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/tables/designs_ball.tex")
+writeLines(design_rows("ball"), "../tables/designs_ball.tex")
 cat(design_rows("ball"), sep = "\n")
