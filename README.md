@@ -1,4 +1,4 @@
-# Design-admissibility-SLSE-asyerrSRS
+# R-opt_asyerrSRS_Admissibility
 
 The code computes R-optimal approximate designs under the second-order least squares
 estimator (SLSE) for second-order response surface (SRS) models in `k` factors on the
