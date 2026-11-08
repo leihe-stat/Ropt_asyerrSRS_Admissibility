@@ -7,7 +7,7 @@
 ##         (Table 7) and ../tex/tables/data_exact.tex (Table 8).
 ## Run from this folder: Rscript data_example.R
 ## =====================================================================
-source("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/R/slsecore.R")
+source("../R/slsecore.R")
 ## ---------------------------------------------------------- estimators
 olse <- function(F, y) qr.coef(qr(F), y)
 
@@ -57,7 +57,7 @@ efficient_round <- function(w, n) {          # Pukelsheim and Rieder (1992)
 }
 
 ## ---------------------------------------------------------- data
-d <- read.csv("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/data/chemical_process.csv")
+d <- read.csv("../data/chemical_process.csv")
 X <- as.matrix(d[, c("x1", "x2")]); y <- d$yield
 F <- fvec(X)
 b_ols <- olse(F, y); r <- y - drop(F %*% b_ols)
@@ -127,7 +127,7 @@ body <- sapply(seq_len(nr), function(i) paste(sapply(grp, function(g)
   collapse = " & "))
 
 #dir.create("../tex/tables", showWarnings = FALSE)
-writeLines(body, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/tables/chemdata.tex")
+writeLines(body, "../tables/chemdata.tex")
 cat(body, sep = "\n")
 
 ## Table 7: orbit weights and R-efficiencies of the CCD and the R-optimal designs
@@ -137,7 +137,7 @@ body <- sprintf("%s & %s & %s & %s & %s & %s & %s & %s \\\\", labs, f4(out$w0), 
                 f4(out$eff_that), f4(out$eff_05), f4(out$eff_09), f4(out$eff_min))
 
 #dir.create("../tex/tables", showWarnings = FALSE)
-writeLines(body, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/tables/data.tex")
+writeLines(body, "../tables/data.tex")
 cat(body, sep = "\n")
 
 
@@ -160,5 +160,5 @@ for (N in unique(sym_exact$N)) {
 }
 
 #dir.create("../tex/tables", showWarnings = FALSE)
-writeLines(body, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/tables/data_exact.tex")
+writeLines(body, "../tables/data_exact.tex")
 cat(body, sep = "\n")
