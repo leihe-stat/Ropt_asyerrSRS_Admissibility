@@ -9,7 +9,7 @@
 ## Output: ../results/robustness.csv and the complete LaTeX table
 ##         ../tex/tables/robustness.tex. Run from this folder: Rscript exp_algo.R
 ## =====================================================================
-source("/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/R/slsecore.R"); library(nleqslv)
+source("../R/slsecore.R"); library(nleqslv)
 set.seed(2026)
 
 n_start <- 100
@@ -73,7 +73,7 @@ for (region in c("cube", "ball")) for (k in c(2, 3, 4, 6, 8, 11)) for (t in c(0,
     both_success     = mean(eq == "success" & alg == "success")))
   print(tail(rob, 1))
 }
-write.csv(rob, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/results/startval.csv", row.names = FALSE)
+write.csv(rob, "../results/startval.csv", row.names = FALSE)
 
 ## ------------------------------------------------ LaTeX table (Table 3)
 ## each cell: success rate (%) of nleqslv / of Algorithm 1
@@ -87,6 +87,6 @@ for (k in unique(rob$k)) {
 }
 
 #dir.create("../tex/tables", showWarnings = FALSE)
-writeLines(body, "/Users/wall/Desktop/2026-RSLSERespSur/0-EffCompRoptSRS/tables/startval.tex")
+writeLines(body, "../tables/startval.tex")
 cat(body, sep = "\n")
 
